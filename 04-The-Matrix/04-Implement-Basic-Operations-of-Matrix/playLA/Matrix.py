@@ -7,6 +7,11 @@ class Matrix:
         # >>> matrix = Matrix([[1, 2], [3, 4]])
         self._values = [row[:] for row in list2d]
 
+    @classmethod
+    def zero(cls, r, c):
+        """返回一个 r 行 c 列的零矩阵"""
+        return cls([[0] * c for _ in range(r)])
+
     def __getitem__(self, pos):
         """返回矩阵 pos 位置的元素"""
         r, c = pos

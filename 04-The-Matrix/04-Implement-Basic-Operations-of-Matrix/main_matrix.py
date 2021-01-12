@@ -3,10 +3,16 @@ from playLA.Matrix import Matrix
 if __name__ == "__main__":
     # matrix: [[1, 2], [3, 4]]
     # matrix2: [[10, 20], [30, 40]]
+    # zero_2_2: [[0, 0], [0, 0]]
+    # zero_2_3: [[0, 0, 0], [0, 0, 0]]
     matrix = Matrix([[1, 2], [3, 4]])
     matrix2 = Matrix([[10, 20], [30, 40]])
+    zero_2_2 = Matrix.zero(2, 2)
+    zero_2_3 = Matrix.zero(2, 3)
     print("matrix:", matrix)
     print("matrix2:", matrix2)
+    print("zero_2_2:", zero_2_2)
+    print("zero_2_3:", zero_2_3)
 
     print("------")
 
@@ -30,14 +36,18 @@ if __name__ == "__main__":
     print("------")
 
     # [[1, 2], [3, 4]] + [[10, 20], [30, 40]] = [[11, 22], [33, 44]]
+    # [[1, 2], [3, 4]] + [[0, 0], [0, 0]] = [[1, 2], [3, 4]]
     # [[1, 2], [3, 4]] - [[10, 20], [30, 40]] = [[-9, -18], [-27, -36]]
+    # [[1, 2], [3, 4]] - [[0, 0], [0, 0]] = [[1, 2], [3, 4]]
     # [[1, 2], [3, 4]] * 2 = [[2, 4], [6, 8]]
     # 2 * [[1, 2], [3, 4]] = [[2, 4], [6, 8]]
     # [[1, 2], [3, 4]] / 2 = [[0.5, 1.0], [1.5, 2.0]]
     # +[[1, 2], [3, 4]] = [[1, 2], [3, 4]]
     # -[[1, 2], [3, 4]] = [[-1, -2], [-3, -4]]
     print("{} + {} = {}".format(matrix, matrix2, matrix + matrix2))
+    print("{} + {} = {}".format(matrix, zero_2_2, matrix + zero_2_2))
     print("{} - {} = {}".format(matrix, matrix2, matrix - matrix2))
+    print("{} - {} = {}".format(matrix, zero_2_2, matrix - zero_2_2))
     print("{} * {} = {}".format(matrix, 2, matrix * 2))
     print("{} * {} = {}".format(2, matrix, 2 * matrix))
     print("{} / {} = {}".format(matrix, 2, matrix / 2))

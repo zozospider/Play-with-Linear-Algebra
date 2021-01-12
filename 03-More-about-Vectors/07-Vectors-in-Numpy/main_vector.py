@@ -3,13 +3,16 @@ from playLA.Vector import Vector
 if __name__ == "__main__":
     # vec = [5, 2]
     # vec2 = [3, 1]
-    # zero2 = [0, 0]
+    # zero_2 = [0, 0]
+    # zero_3 = [0, 0, 0]
     vec = Vector([5, 2])
     vec2 = Vector([3, 1])
-    zero2 = Vector.zero(2)
+    zero_2 = Vector.zero(2)
+    zero_3 = Vector.zero(3)
     print("vec = {}".format(vec))
     print("vec2 = {}".format(vec2))
-    print("zero2 = {}".format(zero2))
+    print("zero_2 = {}".format(zero_2))
+    print("zero_3 = {}".format(zero_3))
 
     print("------")
 
@@ -23,14 +26,16 @@ if __name__ == "__main__":
     # [5, 2] + [3, 1] = [8, 3]
     # [5, 2] + [0, 0] = [5, 2]
     # [5, 2] - [3, 1] = [2, 1]
+    # [5, 2] - [0, 0] = [5, 2]
     # [5, 2] * 3 = [15, 6]
     # 3 * [5, 2] = [15, 6]
     # [5, 2] / 2 = [2.5, 1.0]
     # +[5, 2] = [5, 2]
     # -[5, 2] = [-5, -2]
     print("{} + {} = {}".format(vec, vec2, vec + vec2))
-    print("{} + {} = {}".format(vec, zero2, vec + zero2))
+    print("{} + {} = {}".format(vec, zero_2, vec + zero_2))
     print("{} - {} = {}".format(vec, vec2, vec - vec2))
+    print("{} - {} = {}".format(vec, zero_2, vec - zero_2))
     print("{} * {} = {}".format(vec, 3, vec * 3))
     print("{} * {} = {}".format(3, vec, 3 * vec))
     print("{} / {} = {}".format(vec, 2, vec / 2))
@@ -44,7 +49,7 @@ if __name__ == "__main__":
     # [0, 0].norm() = 0.0
     print("{}.norm() = {}".format(vec, vec.norm()))
     print("{}.norm() = {}".format(vec2, vec2.norm()))
-    print("{}.norm() = {}".format(zero2, zero2.norm()))
+    print("{}.norm() = {}".format(zero_2, zero_2.norm()))
 
     # [5, 2].normalize() = [0.9284766908852593, 0.3713906763541037]
     # [3, 1].normalize() = [0.9486832980505138, 0.31622776601683794]
@@ -52,9 +57,9 @@ if __name__ == "__main__":
     print("{}.normalize() = {}".format(vec, vec.normalize()))
     print("{}.normalize() = {}".format(vec2, vec2.normalize()))
     try:
-        print("{}.normalize() = {}".format(zero2, zero2.normalize()))
+        print("{}.normalize() = {}".format(zero_2, zero_2.normalize()))
     except ZeroDivisionError:
-        print("Cannot normalize zero vector {}".format(zero2))
+        print("Cannot normalize zero vector {}".format(zero_2))
 
     # [5, 2].normalize().norm() = 1.0
     # [3, 1].normalize().norm() = 0.9999999999999999
