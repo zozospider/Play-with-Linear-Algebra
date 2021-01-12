@@ -33,24 +33,24 @@ if __name__ == "__main__":
 
     print("------")
 
-    # norm((5, 2)) = 5.385164807134504
-    # norm((3, 1)) = 3.1622776601683795
-    # norm((0, 0)) = 0.0
-    print("norm({}) = {}".format(vec, vec.norm()))
-    print("norm({}) = {}".format(vec2, vec2.norm()))
-    print("norm({}) = {}".format(zero2, zero2.norm()))
+    # (5, 2).norm() = 5.385164807134504
+    # (3, 1).norm() = 3.1622776601683795
+    # (0, 0).norm() = 0.0
+    print("{}.norm() = {}".format(vec, vec.norm()))
+    print("{}.norm() = {}".format(vec2, vec2.norm()))
+    print("{}.norm() = {}".format(zero2, zero2.norm()))
 
-    # normalize(5, 2) is (0.9284766908852593, 0.3713906763541037)
-    # normalize(3, 1) is (0.9486832980505138, 0.31622776601683794)
+    # (5, 2).normalize() = (0.9284766908852593, 0.3713906763541037)
+    # (3, 1).normalize() = (0.9486832980505138, 0.31622776601683794)
     # Cannot normalize zero vector (0, 0)
-    print("normalize {} is {}".format(vec, vec.normalize()))
-    print("normalize {} is {}".format(vec2, vec2.normalize()))
+    print("{}.normalize() = {}".format(vec, vec.normalize()))
+    print("{}.normalize() = {}".format(vec2, vec2.normalize()))
     try:
-        print("normalize {} is {}".format(zero2, zero2.normalize()))
+        print("{}.normalize() = {}".format(zero2, zero2.normalize()))
     except ZeroDivisionError:
         print("Cannot normalize zero vector {}".format(zero2))
 
-    # 0.9999999999999999
-    # 1.0
-    print(vec2.normalize().norm())
-    print(vec.normalize().norm())
+    # (5, 2)..normalize().norm() = 1.0
+    # (3, 1)..normalize().norm() = 0.9999999999999999
+    print("{}..normalize().norm() = {}".format(vec, vec.normalize().norm()))
+    print("{}..normalize().norm() = {}".format(vec2, vec2.normalize().norm()))
