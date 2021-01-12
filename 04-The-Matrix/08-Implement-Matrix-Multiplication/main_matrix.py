@@ -3,14 +3,20 @@ from playLA.Matrix import Matrix
 if __name__ == "__main__":
     # matrix: [[1, 2], [3, 4]]
     # matrix2: [[10, 20], [30, 40]]
+    # matrix3: [[1, 2, 3], [2, 3, 5], [1, 6, 6], [4, 5, 2]]
+    # matrix4: [[0, 1], [5, 2], [2, 1]]
     # zero_2_2: [[0, 0], [0, 0]]
     # zero_2_3: [[0, 0, 0], [0, 0, 0]]
     matrix = Matrix([[1, 2], [3, 4]])
     matrix2 = Matrix([[10, 20], [30, 40]])
+    matrix3 = Matrix([[1, 2, 3], [2, 3, 5], [1, 6, 6], [4, 5, 2]])
+    matrix4 = Matrix([[0, 1], [5, 2], [2, 1]])
     zero_2_2 = Matrix.zero(2, 2)
     zero_2_3 = Matrix.zero(2, 3)
     print("matrix:", matrix)
     print("matrix2:", matrix2)
+    print("matrix3:", matrix3)
+    print("matrix4:", matrix4)
     print("zero_2_2:", zero_2_2)
     print("zero_2_3:", zero_2_3)
 
@@ -53,3 +59,14 @@ if __name__ == "__main__":
     print("{} / {} = {}".format(matrix, 2, matrix / 2))
     print("+{} = {}".format(matrix, +matrix))
     print("-{} = {}".format(matrix, -matrix))
+
+    print("------")
+
+    # [[1, 2], [3, 4]].dot([[10, 20], [30, 40]]) = [[70, 100], [150, 220]]
+    # [[10, 20], [30, 40]].dot([[1, 2], [3, 4]]) = [[70, 100], [150, 220]]
+    # [[1, 2, 3], [2, 3, 5], [1, 6, 6], [4, 5, 2]].dot([[0, 1], [5, 2], [2, 1]])
+    #                                                 = [[16, 8], [25, 13], [42, 19], [29, 16]]
+    print("{}.dot({}) = {}".format(matrix, matrix2, matrix.dot(matrix2)))
+    print("{}.dot({}) = {}".format(matrix2, matrix, matrix2.dot(matrix)))
+    print("{}.dot({}) = {}".format(matrix3, matrix4, matrix3.dot(matrix4)))
+    # print("{}.dot({}) = {}".format(matrix4, matrix3, matrix4.dot(matrix3)))

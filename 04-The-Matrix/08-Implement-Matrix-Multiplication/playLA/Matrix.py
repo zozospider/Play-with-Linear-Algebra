@@ -85,3 +85,18 @@ class Matrix:
     def col_vector(self, index):
         """返回矩阵的第 index 个列向量"""
         return Vector([row[index] for row in self._values])
+
+    def dot(self, another):
+        """返回矩阵乘法的结果"""
+        if isinstance(another, Vector):
+            # 矩阵和向量的乘法
+            assert self.col_num() == len(another), \
+                "Error in Matrix-Vector Multiplication"
+            return Vector([self.row_vector(i).dot(another) for i in range(self.row_num())])
+
+        if isinstance(another, Matrix):
+            # 矩阵和矩阵的乘法
+            assert self.col_num() == another.row_num(), \
+                "Error in Matrix-Matrix Multiplication"
+            return Matrix([[self.row_vector(i).dot(another.col_vector(j)) for j in range(another.col_num())]
+                           for i in range(self.row_num())])
