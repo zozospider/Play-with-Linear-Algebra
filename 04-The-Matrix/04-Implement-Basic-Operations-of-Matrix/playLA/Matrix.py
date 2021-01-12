@@ -15,7 +15,10 @@ class Matrix:
     def __repr__(self):
         return "Matrix({})".format(self._values)
 
-    __str__ = __repr__
+    # __str__ = __repr__
+
+    def __str__(self):
+        return str(self._values)
 
     def shape(self):
         """返回矩阵的形状: (行数, 列数)"""
@@ -43,3 +46,10 @@ class Matrix:
     def col_vector(self, index):
         """返回矩阵的第 index 个列向量"""
         return Vector([row[index] for row in self._values])
+
+    def add(self, another):
+        """返回两个矩阵的加法结果"""
+        assert self.shape() == another.shape(), \
+            "Error in adding. Shape of matrix must be same"
+        return Matrix(
+            [[a + b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())])

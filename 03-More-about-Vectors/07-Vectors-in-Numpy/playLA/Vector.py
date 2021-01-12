@@ -70,8 +70,9 @@ class Vector:
     def __str__(self):
         # >>> v = Vector([5, 2])
         # >>> print(v)
-        # (5, 2)
-        return "({})".format(", ".join(str(e) for e in self._values))
+        # [5, 2]
+        # return "({})".format(", ".join(str(e) for e in self._values))
+        return str(self._values)
 
     def norm(self):
         """返回向量的模"""

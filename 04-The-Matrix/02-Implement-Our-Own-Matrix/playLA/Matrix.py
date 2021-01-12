@@ -15,7 +15,10 @@ class Matrix:
     def __repr__(self):
         return "Matrix({})".format(self._values)
 
-    __str__ = __repr__
+    # __str__ = __repr__
+
+    def __str__(self):
+        return str(self._values)
 
     def shape(self):
         """返回矩阵的形状: (行数, 列数)"""
