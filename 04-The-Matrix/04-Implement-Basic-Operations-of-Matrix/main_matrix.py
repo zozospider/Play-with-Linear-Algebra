@@ -29,5 +29,7 @@ if __name__ == "__main__":
 
     print("------")
 
-    # [[1, 2], [3, 4]].add([[10, 20], [30, 40]]): [[11, 22], [33, 44]]
-    print("{}.add({}): {}".format(matrix, matrix2, matrix.add(matrix2)))
+    # [[1, 2], [3, 4]] + [[10, 20], [30, 40]] = [[11, 22], [33, 44]]
+    # [[1, 2], [3, 4]] - [[10, 20], [30, 40]] = [[-9, -18], [-27, -36]]
+    print("{} + {} = {}".format(matrix, matrix2, matrix + matrix2))
+    print("{} - {} = {}".format(matrix, matrix2, matrix - matrix2))

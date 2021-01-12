@@ -32,7 +32,7 @@ class Vector:
     def __sub__(self, another):
         """向量减法, 返回结果向量"""
         assert len(self) == len(another), \
-            "Error in adding, Length of vectors must be same"
+            "Error in subtracting, Length of vectors must be same"
         # return Vector([a - b for a, b in zip(self._values, another._values)])
         return Vector([a - b for a, b in zip(self, another)])
 
