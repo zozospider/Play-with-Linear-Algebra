@@ -51,15 +51,15 @@ class Vector:
 
     def __truediv__(self, k):
         """返回数量除法的结果向量: self / k"""
-        return (1 / k) * self
+        return self * (1 / k)
 
     def __pos__(self):
         """返回向量取正的结果向量"""
-        return 1 * self
+        return self * 1
 
     def __neg__(self):
         """返回向量取负的结果向量"""
-        return -1 * self
+        return self * -1
 
     def __repr__(self):
         # >>> v = Vector([5, 2])

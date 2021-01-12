@@ -31,5 +31,15 @@ if __name__ == "__main__":
 
     # [[1, 2], [3, 4]] + [[10, 20], [30, 40]] = [[11, 22], [33, 44]]
     # [[1, 2], [3, 4]] - [[10, 20], [30, 40]] = [[-9, -18], [-27, -36]]
+    # [[1, 2], [3, 4]] * 2 = [[2, 4], [6, 8]]
+    # 2 * [[1, 2], [3, 4]] = [[2, 4], [6, 8]]
+    # [[1, 2], [3, 4]] / 2 = [[0.5, 1.0], [1.5, 2.0]]
+    # +[[1, 2], [3, 4]] = [[1, 2], [3, 4]]
+    # -[[1, 2], [3, 4]] = [[-1, -2], [-3, -4]]
     print("{} + {} = {}".format(matrix, matrix2, matrix + matrix2))
     print("{} - {} = {}".format(matrix, matrix2, matrix - matrix2))
+    print("{} * {} = {}".format(matrix, 2, matrix * 2))
+    print("{} * {} = {}".format(2, matrix, 2 * matrix))
+    print("{} / {} = {}".format(matrix, 2, matrix / 2))
+    print("+{} = {}".format(matrix, +matrix))
+    print("-{} = {}".format(matrix, -matrix))

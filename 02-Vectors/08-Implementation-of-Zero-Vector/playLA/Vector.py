@@ -46,11 +46,11 @@ class Vector:
 
     def __pos__(self):
         """返回向量取正的结果向量"""
-        return 1 * self
+        return self * 1
 
     def __neg__(self):
         """返回向量取负的结果向量"""
-        return -1 * self
+        return self * -1
 
     def __repr__(self):
         # >>> v = Vector([5, 2])

@@ -25,6 +25,7 @@ if __name__ == "__main__":
     # [5, 2] - [3, 1] = [2, 1]
     # [5, 2] * 3 = [15, 6]
     # 3 * [5, 2] = [15, 6]
+    # [5, 2] / 2 = [2.5, 1.0]
     # +[5, 2] = [5, 2]
     # -[5, 2] = [-5, -2]
     print("{} + {} = {}".format(vec, vec2, vec + vec2))
@@ -32,6 +33,7 @@ if __name__ == "__main__":
     print("{} - {} = {}".format(vec, vec2, vec - vec2))
     print("{} * {} = {}".format(vec, 3, vec * 3))
     print("{} * {} = {}".format(3, vec, 3 * vec))
+    print("{} / {} = {}".format(vec, 2, vec / 2))
     print("+{} = {}".format(vec, +vec))
     print("-{} = {}".format(vec, -vec))
 
