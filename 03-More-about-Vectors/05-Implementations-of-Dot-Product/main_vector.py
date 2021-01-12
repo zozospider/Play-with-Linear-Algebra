@@ -50,10 +50,10 @@ if __name__ == "__main__":
     except ZeroDivisionError:
         print("Cannot normalize zero vector {}".format(zero2))
 
-    # (5, 2)..normalize().norm() = 1.0
-    # (3, 1)..normalize().norm() = 0.9999999999999999
-    print("{}..normalize().norm() = {}".format(vec, vec.normalize().norm()))
-    print("{}..normalize().norm() = {}".format(vec2, vec2.normalize().norm()))
+    # (5, 2).normalize().norm() = 1.0
+    # (3, 1).normalize().norm() = 0.9999999999999999
+    print("{}.normalize().norm() = {}".format(vec, vec.normalize().norm()))
+    print("{}.normalize().norm() = {}".format(vec2, vec2.normalize().norm()))
 
     print("------")
 
