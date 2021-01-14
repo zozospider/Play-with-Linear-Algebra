@@ -96,6 +96,13 @@ class Matrix:
             # [     ...    ] . [ v ] = [ ...  ]
             # [     ...    ]   [ | ]   [ ...  ]
             # [ - - rm - - ]   [ | ]   [ r4.v ]
+
+            #    5*3       3*1     5*1
+            # [ 1 2 0 ]           [ 4 ]
+            # [ 2 1 5 ]   [ 2 ]   [ 5 ]
+            # [ 1 1 2 ] . [ 1 ] = [ 3 ]
+            # [ 1 0 0 ]   [ 0 ]   [ 2 ]
+            # [ 4 1 2 ]           [ 9 ]
             assert self.col_num() == len(another), \
                 "Error in Matrix-Vector Multiplication"
             return Vector([self.row_vector(i).dot(another) for i in range(self.row_num())])
@@ -108,7 +115,21 @@ class Matrix:
             # [     ...    ] . [ c1 c2 ... cn] = [  ...   ...       ...  ]
             # [     ...    ]   [ |  |      | ]   [  ...   ...       ...  ]
             # [ - - rm - - ]   [ |  |      | ]   [ rm.c1 rm.c2 ... rm.cn ]
+
+            #    5*3        3*2       5*2
+            # [ 1 2 0 ]             [ 4 6 ]
+            # [ 2 1 5 ]   [ 2 0 ]   [ 5 8 ]
+            # [ 1 1 2 ] . [ 1 3 ] = [ 3 5 ]
+            # [ 1 0 0 ]   [ 0 1 ]   [ 2 0 ]
+            # [ 4 1 2 ]             [ 9 5 ]
             assert self.col_num() == another.row_num(), \
                 "Error in Matrix-Matrix Multiplication"
+            # m = []
+            # for i in range(self.row_num()):
+            #     v = []
+            #     for j in range(another.col_num()):
+            #         v.append(self.row_vector(i).dot(another.col_vector(j)))
+            #     m.append(v)
+            # return Matrix(m)
             return Matrix([[self.row_vector(i).dot(another.col_vector(j)) for j in range(another.col_num())]
                            for i in range(self.row_num())])
