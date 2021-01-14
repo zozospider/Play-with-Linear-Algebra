@@ -90,14 +90,14 @@ class Matrix:
         """返回矩阵乘法的结果"""
         if isinstance(another, Vector):
             # 矩阵和向量的乘法
-            #     M(m*k)       V(k*1)   X(m*1)
+            #     M(m*k)       V(k)      V(m)
             # [ - - r1 - - ]   [ | ]   [ r1.v ]
             # [ - - r2 - - ]   [ | ]   [ r2.v ]
             # [     ...    ] . [ v ] = [ ...  ]
             # [     ...    ]   [ | ]   [ ...  ]
             # [ - - rm - - ]   [ | ]   [ r4.v ]
 
-            #    5*3       3*1     5*1
+            #    5*3        3       5
             # [ 1 2 0 ]           [ 4 ]
             # [ 2 1 5 ]   [ 2 ]   [ 5 ]
             # [ 1 1 2 ] . [ 1 ] = [ 3 ]
@@ -108,8 +108,8 @@ class Matrix:
             return Vector([self.row_vector(i).dot(another) for i in range(self.row_num())])
 
         if isinstance(another, Matrix):
-            # 矩阵和矩阵的乘法 (不遵守交换律)
-            #    M1(m*k)           M2(k*n)                X(m*n)
+            # 矩阵和矩阵的乘法
+            #     M(m*k)           M(k*n)                 M(m*n)
             # [ - - r1 - - ]   [ |  |      | ]   [ r1.c1 r1.c2 ... r1.cn ]
             # [ - - r2 - - ]   [ |  |      | ]   [ r2.c1 r2.c2 ... r2.cn ]
             # [     ...    ] . [ c1 c2 ... cn] = [  ...   ...       ...  ]
