@@ -9,10 +9,10 @@ Thumbs.db
 
 # Jetbrains Ignore files
 .idea/
-.pytest_cache/
 
 # Python Ignore files
 __pycache__/
+.pytest_cache/
 *.py[cod]
 *$py.class
 
