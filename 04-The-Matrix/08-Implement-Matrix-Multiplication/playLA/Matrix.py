@@ -108,7 +108,7 @@ class Matrix:
             return Vector([self.row_vector(i).dot(another) for i in range(self.row_num())])
 
         if isinstance(another, Matrix):
-            # 矩阵和矩阵的乘法 (没有交换律)
+            # 矩阵和矩阵的乘法 (不遵循交换律)
             #    M1(m*k)           M2(k*n)                X(m*n)
             # [ - - r1 - - ]   [ |  |      | ]   [ r1.c1 r1.c2 ... r1.cn ]
             # [ - - r2 - - ]   [ |  |      | ]   [ r2.c1 r2.c2 ... r2.cn ]
