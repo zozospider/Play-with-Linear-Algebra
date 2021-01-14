@@ -75,3 +75,8 @@ if __name__ == "__main__":
     #                                                           = [[4, 6], [5, 8], [3, 5], [2, 0], [9, 5]]
     print("{}.dot({}) = {}".format(matrix3, matrix4, matrix3.dot(matrix4)))
     # print("{}.dot({}) = {}".format(matrix4, matrix3, matrix4.dot(matrix3)))
+
+    print("------")
+
+    # [[2, 0], [1, 3], [0, 1]].transpose() = [[2, 1, 0], [0, 3, 1]]
+    print("{}.transpose() = {}".format(matrix4, matrix4.transpose()))

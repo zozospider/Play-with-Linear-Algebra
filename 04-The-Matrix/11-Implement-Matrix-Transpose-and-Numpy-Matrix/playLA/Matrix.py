@@ -154,3 +154,14 @@ class Matrix:
             # return Matrix(m)
             return Matrix([[self.row_vector(i).dot(another.col_vector(j)) for j in range(another.col_num())]
                            for i in range(self.row_num())])
+
+    def transpose(self):
+        """返回矩阵的转置矩阵"""
+        # m = []
+        # for i in range(self.col_num()):
+        #     v = []
+        #     for e in self.col_vector(i):
+        #         v.append(e)
+        #     m.append(v)
+        # return Matrix(m)
+        return Matrix([[e for e in self.col_vector(i)] for i in range(self.col_num())])
