@@ -90,12 +90,24 @@ class Matrix:
         """返回矩阵乘法的结果"""
         if isinstance(another, Vector):
             # 矩阵和向量的乘法
+            #     M(m*k)       V(k*1)   X(m*1)
+            # [ - - r1 - - ]   [ | ]   [ r1.v ]
+            # [ - - r2 - - ]   [ | ]   [ r2.v ]
+            # [     ...    ] . [ v ] = [ ...  ]
+            # [     ...    ]   [ | ]   [ ...  ]
+            # [ - - rm - - ]   [ | ]   [ r4.v ]
             assert self.col_num() == len(another), \
                 "Error in Matrix-Vector Multiplication"
             return Vector([self.row_vector(i).dot(another) for i in range(self.row_num())])
 
         if isinstance(another, Matrix):
             # 矩阵和矩阵的乘法
+            #    M1(m*k)           M2(k*n)                X(m*n)
+            # [ - - r1 - - ]   [ |  |      | ]   [ r1.c1 r1.c2 ... r1.cn ]
+            # [ - - r2 - - ]   [ |  |      | ]   [ r2.c1 r2.c2 ... r2.cn ]
+            # [     ...    ] . [ c1 c2 ... cn] = [  ...   ...       ...  ]
+            # [     ...    ]   [ |  |      | ]   [  ...   ...       ...  ]
+            # [ - - rm - - ]   [ |  |      | ]   [ rm.c1 rm.c2 ... rm.cn ]
             assert self.col_num() == another.row_num(), \
                 "Error in Matrix-Matrix Multiplication"
             return Matrix([[self.row_vector(i).dot(another.col_vector(j)) for j in range(another.col_num())]

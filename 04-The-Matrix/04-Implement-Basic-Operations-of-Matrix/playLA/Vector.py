@@ -88,6 +88,13 @@ class Vector:
 
     def dot(self, another):
         """向量点乘, 返回结果标量"""
+        # [ - - u - - ] . [ - - v - - ] = u1v1 + u2v2 + ... + unvn
+
+        #                 [ | ]
+        #                 [ | ]
+        # [ - - u - - ] . [ v ] = u1v1 + u2v2 + ... + unvn
+        #                 [ | ]
+        #                 [ | ]
         assert len(self) == len(another), \
             "Error in dot product. Length of vectors must be same"
         return sum(a * b for a, b in zip(self, another))
