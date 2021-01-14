@@ -21,6 +21,13 @@ class Matrix:
         """返回两个矩阵的加法结果"""
         assert self.shape() == another.shape(), \
             "Error in adding. Shape of matrix must be same"
+        # m = []
+        # for i in range(self.row_num()):
+        #     v = []
+        #     for a, b in zip(self.row_vector(i), another.row_vector(i)):
+        #         v.append(a + b)
+        #     m.append(v)
+        # return Matrix(m)
         return Matrix(
             [[a + b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())])
 
@@ -28,11 +35,25 @@ class Matrix:
         """返回两个矩阵的减法结果"""
         assert self.shape() == another.shape(), \
             "Error in subtracting. Shape of matrix must be same"
+        # m = []
+        # for i in range(self.row_num()):
+        #     v = []
+        #     for a, b in zip(self.row_vector(i), another.row_vector(i)):
+        #         v.append(a - b)
+        #     m.append(v)
+        # return Matrix(m)
         return Matrix(
             [[a - b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())])
 
     def __mul__(self, k):
         """返回矩阵的数量乘结果: self * k"""
+        # m = []
+        # for i in range(self.row_num()):
+        #     v = []
+        #     for e in self.row_vector(i):
+        #         v.append(e * k)
+        #     m.append(v)
+        # return Matrix(m)
         return Matrix([e * k for e in self.row_vector(i)] for i in range(self.row_num()))
 
     def __rmul__(self, k):
