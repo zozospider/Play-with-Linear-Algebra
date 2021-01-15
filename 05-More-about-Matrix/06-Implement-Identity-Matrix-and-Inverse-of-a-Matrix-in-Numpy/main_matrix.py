@@ -6,22 +6,28 @@ if __name__ == "__main__":
     # matrix2: [[10, 20], [30, 40]]
     # matrix3: [[1, 2, 0], [2, 1, 5], [1, 1, 2], [1, 0, 0], [4, 1, 2]]
     # matrix4: [[2, 0], [1, 3], [0, 1]]
+    # matrix5: [[2, 0, 1], [1, 2, 2], [0, 3, 3]]
     # zero_2_2: [[0, 0], [0, 0]]
     # zero_2_3: [[0, 0, 0], [0, 0, 0]]
+    # identity_3: [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
     # vector: [2, 1, 0]
     matrix = Matrix([[1, 2], [3, 4]])
     matrix2 = Matrix([[10, 20], [30, 40]])
     matrix3 = Matrix([[1, 2, 0], [2, 1, 5], [1, 1, 2], [1, 0, 0], [4, 1, 2]])
     matrix4 = Matrix([[2, 0], [1, 3], [0, 1]])
+    matrix5 = Matrix([[2, 0, 1], [1, 2, 2], [0, 3, 3]])
     zero_2_2 = Matrix.zero(2, 2)
     zero_2_3 = Matrix.zero(2, 3)
+    identity_3 = Matrix.identity(3)
     vector = Vector([2, 1, 0])
     print("matrix:", matrix)
     print("matrix2:", matrix2)
     print("matrix3:", matrix3)
     print("matrix4:", matrix4)
+    print("matrix5:", matrix5)
     print("zero_2_2:", zero_2_2)
     print("zero_2_3:", zero_2_3)
+    print("identity_3:", identity_3)
     print("vector:", vector)
 
     print("------")
@@ -80,3 +86,10 @@ if __name__ == "__main__":
 
     # [[2, 0], [1, 3], [0, 1]].transpose() = [[2, 1, 0], [0, 3, 1]]
     print("{}.transpose() = {}".format(matrix4, matrix4.transpose()))
+
+    print("------")
+
+    # [[2, 0, 1], [1, 2, 2], [0, 3, 3]].dot([[1, 0, 0], [0, 1, 0], [0, 0, 1]]) = [[2, 0, 1], [1, 2, 2], [0, 3, 3]]
+    # [[1, 0, 0], [0, 1, 0], [0, 0, 1]].dot([[2, 0, 1], [1, 2, 2], [0, 3, 3]]) = [[2, 0, 1], [1, 2, 2], [0, 3, 3]]
+    print("{}.dot({}) = {}".format(matrix5, identity_3, matrix5.dot(identity_3)))
+    print("{}.dot({}) = {}".format(identity_3, matrix5, identity_3.dot(matrix5)))

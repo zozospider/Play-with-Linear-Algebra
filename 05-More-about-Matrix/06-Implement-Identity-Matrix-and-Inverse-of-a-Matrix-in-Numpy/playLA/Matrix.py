@@ -12,6 +12,14 @@ class Matrix:
         """返回一个 r 行 c 列的零矩阵"""
         return cls([[0] * c for _ in range(r)])
 
+    @classmethod
+    def identity(cls, n):
+        """返回一个 n 行 n 列的单位矩阵"""
+        m = [[0] * n for _ in range(n)]
+        for i in range(n):
+            m[i][i] = 1
+        return cls(m)
+
     def __getitem__(self, pos):
         """返回矩阵 pos 位置的元素"""
         r, c = pos
