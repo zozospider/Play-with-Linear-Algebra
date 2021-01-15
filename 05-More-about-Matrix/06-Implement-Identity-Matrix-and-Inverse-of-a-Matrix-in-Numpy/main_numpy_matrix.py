@@ -12,6 +12,11 @@ if __name__ == "__main__":
     # [[10 20]
     #  [30 40]]
     print(matrix2)
+    matrix3 = np.array([[2, 0, 1], [1, 2, 2], [0, 3, 3]])
+    # [[2 0 1]
+    #  [1 2 2]
+    #  [0 3 3]]
+    print(matrix3)
     vector = np.array([1, 10])
     # [ 1 10]
     print(vector)
@@ -80,3 +85,15 @@ if __name__ == "__main__":
     #  [0. 0. 1.]]
     identity_3 = np.identity(3)
     print(identity_3)
+
+    # [[2. 0. 1.]
+    #  [1. 2. 2.]
+    #  [0. 3. 3.]]
+    print(matrix3.dot(identity_3))
+    # [[2. 0. 1.]
+    #  [1. 2. 2.]
+    #  [0. 3. 3.]]
+    print(identity_3.dot(matrix3))
+
+    # 逆矩阵
+    inv_of_matrix3 = np.linalg.inv(matrix3)

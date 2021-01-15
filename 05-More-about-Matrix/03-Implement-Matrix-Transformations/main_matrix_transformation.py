@@ -12,29 +12,29 @@ if __name__ == "__main__":
     print("------")
 
     # 绘制原始矩阵图
-    # M: 原始矩阵 (每行代表一个坐标)
-    # transposedM: 原始矩阵 (每列代表一个坐标)
+    # matrix: 原始矩阵 (每行代表一个坐标)
+    # transposed_matrix: 原始矩阵 (每列代表一个坐标)
 
     m_points = [[0, 0], [0, 5], [3, 5], [3, 4], [1, 4],
                 [1, 3], [2, 3], [2, 2], [1, 2], [1, 0]]
 
-    M = Matrix(m_points)
-    transposedM = M.transpose()
-    print("M:", M)
-    print("transposedM:", transposedM)
+    matrix = Matrix(m_points)
+    transposed_matrix = matrix.transpose()
+    print("matrix:", matrix)
+    print("transposed_matrix:", transposed_matrix)
 
     # 绘制
     # x = [point[0] for point in m_points]
     # y = [point[1] for point in m_points]
-    x = [transposedM.col_vector(i)[0] for i in range(transposedM.col_num())]
-    y = [transposedM.col_vector(i)[1] for i in range(transposedM.col_num())]
+    x = [transposed_matrix.col_vector(i)[0] for i in range(transposed_matrix.col_num())]
+    y = [transposed_matrix.col_vector(i)[1] for i in range(transposed_matrix.col_num())]
     plt.plot(x, y)
 
     print("------")
 
     # 绘制变换后的矩阵图
-    # T: 变换矩阵
-    # transposedM2: 变换后的矩阵 (每列代表一个坐标)
+    # transform: 变换矩阵
+    # transformed_transposed_matrix: 变换后的矩阵 (每列代表一个坐标)
 
     # 缩放: 将 x 扩大 2 倍, y 扩大 1.5 倍
     # t_points = [[2, 0], [0, 1.5]]
@@ -53,14 +53,14 @@ if __name__ == "__main__":
     theta = math.pi / 3
     t_points = [[math.cos(theta), math.sin(theta)], [-math.sin(theta), math.cos(theta)]]
 
-    T = Matrix(t_points)
-    transposedM2 = T.dot(transposedM)
-    print("T:", T)
-    print("transposedM2:", transposedM2)
+    transform = Matrix(t_points)
+    transformed_transposed_matrix = transform.dot(transposed_matrix)
+    print("transform:", transform)
+    print("transformed_transposed_matrix:", transformed_transposed_matrix)
 
     # 绘制
-    x2 = [transposedM2.col_vector(i)[0] for i in range(transposedM2.col_num())]
-    y2 = [transposedM2.col_vector(i)[1] for i in range(transposedM2.col_num())]
+    x2 = [transformed_transposed_matrix.col_vector(i)[0] for i in range(transformed_transposed_matrix.col_num())]
+    y2 = [transformed_transposed_matrix.col_vector(i)[1] for i in range(transformed_transposed_matrix.col_num())]
     plt.plot(x2, y2)
 
     # 显示
