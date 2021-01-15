@@ -4,16 +4,18 @@ if __name__ == "__main__":
     print(np.__version__)
 
     # 创建
-    matrix1 = np.array([[1, 2], [3, 4]])
     # [[1 2]
     #  [3 4]]
+    matrix1 = np.array([[1, 2], [3, 4]])
     print(matrix1)
-    matrix2 = np.array([[10, 20], [30, 40]])
+
     # [[10 20]
     #  [30 40]]
+    matrix2 = np.array([[10, 20], [30, 40]])
     print(matrix2)
-    vector = np.array([1, 10])
+
     # [ 1 10]
+    vector = np.array([1, 10])
     print(vector)
 
     # 形状

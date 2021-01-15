@@ -4,21 +4,24 @@ if __name__ == "__main__":
     print(np.__version__)
 
     # 创建
-    matrix1 = np.array([[1, 2], [3, 4]])
     # [[1 2]
     #  [3 4]]
+    matrix1 = np.array([[1, 2], [3, 4]])
     print(matrix1)
-    matrix2 = np.array([[10, 20], [30, 40]])
+
     # [[10 20]
     #  [30 40]]
+    matrix2 = np.array([[10, 20], [30, 40]])
     print(matrix2)
-    matrix3 = np.array([[2, 0, 1], [1, 2, 2], [0, 3, 3]])
+
     # [[2 0 1]
     #  [1 2 2]
-    #  [0 3 3]]
+    #  [0 2 2]]
+    matrix3 = np.array([[2, 0, 1], [1, 2, 2], [0, 2, 2]])
     print(matrix3)
-    vector = np.array([1, 10])
+
     # [ 1 10]
+    vector = np.array([1, 10])
     print(vector)
 
     # 形状
@@ -79,6 +82,8 @@ if __name__ == "__main__":
     # [21 43]
     print(matrix1.dot(vector))
 
+    print("------")
+
     # 单位矩阵
     # [[1. 0. 0.]
     #  [0. 1. 0.]
@@ -88,12 +93,27 @@ if __name__ == "__main__":
 
     # [[2. 0. 1.]
     #  [1. 2. 2.]
-    #  [0. 3. 3.]]
+    #  [0. 2. 2.]]
     print(matrix3.dot(identity_3))
     # [[2. 0. 1.]
     #  [1. 2. 2.]
-    #  [0. 3. 3.]]
+    #  [0. 2. 2.]]
     print(identity_3.dot(matrix3))
 
+    print("------")
+
     # 逆矩阵
-    inv_of_matrix3 = np.linalg.inv(matrix3)
+    # [[ 0.   1.  -1. ]
+    #  [-1.   2.  -1.5]
+    #  [ 1.  -2.   2. ]]
+    inverted_matrix3 = np.linalg.inv(matrix3)
+    print(inverted_matrix3)
+
+    # [[1. 0. 0.]
+    #  [0. 1. 0.]
+    #  [0. 0. 1.]]
+    print(inverted_matrix3.dot(matrix3))
+    # [[1. 0. 0.]
+    #  [0. 1. 0.]
+    #  [0. 0. 1.]]
+    print(matrix3.dot(inverted_matrix3))
