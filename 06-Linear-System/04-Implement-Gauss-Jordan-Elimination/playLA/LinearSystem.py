@@ -81,7 +81,8 @@ class LinearSystem:
             # step c
             for j in range(i + 1, self._n):
                 multiples_of_row_i = self.augmented_matrix[j][i]
-                self.augmented_matrix[j] = self.augmented_matrix[j] - multiples_of_row_i * self.augmented_matrix[i]
+                if multiples_of_row_i != 0:
+                    self.augmented_matrix[j] = self.augmented_matrix[j] - multiples_of_row_i * self.augmented_matrix[i]
 
     def _backward(self) -> None:
         """
@@ -104,7 +105,8 @@ class LinearSystem:
         for i in range(self._n - 1, -1, -1):
             for j in range(i - 1, -1, -1):
                 multiples_of_row_i = self.augmented_matrix[j][i]
-                self.augmented_matrix[j] = self.augmented_matrix[j] - multiples_of_row_i * self.augmented_matrix[i]
+                if multiples_of_row_i != 0:
+                    self.augmented_matrix[j] = self.augmented_matrix[j] - multiples_of_row_i * self.augmented_matrix[i]
 
     def _max_row_below(self, r: int) -> int:
         """返回当前行的下面所有行中具有最大主元的行"""
