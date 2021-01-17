@@ -124,7 +124,7 @@ class LinearSystem:
         """交换当前增广矩阵中的两行"""
         self.augmented_matrix[r1], self.augmented_matrix[r2] = self.augmented_matrix[r2], self.augmented_matrix[r1]
 
-    def augmented_matrix_fancy_print(self):
+    def augmented_matrix_fancy_print(self) -> None:
         """打印当前增广矩阵"""
         for i in range(self._n):
             print(" ".join(str(self.augmented_matrix[i][j]) for j in range(self._n)), end=" ")
