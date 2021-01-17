@@ -74,6 +74,10 @@ class Vector:
         # return "({})".format(", ".join(str(e) for e in self._values))
         return str(self._values)
 
+    def underlying_list(self):
+        """返回向量的底层列表"""
+        return self._values[:]
+
     def norm(self):
         """返回向量的模"""
         return math.sqrt(sum(e ** 2 for e in self))
