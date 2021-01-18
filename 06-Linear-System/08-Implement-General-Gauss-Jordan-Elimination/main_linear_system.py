@@ -1,6 +1,6 @@
-from playLA.linear_system import LinearSystem
-from playLA.matrix import Matrix
-from playLA.vector import Vector
+from la.linear_system import LinearSystem
+from la.matrix import Matrix
+from la.vector import Vector
 
 if __name__ == "__main__":
     # 1.0 0.0 0.0 | 2.0

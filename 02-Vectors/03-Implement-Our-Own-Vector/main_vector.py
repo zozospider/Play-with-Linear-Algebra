@@ -1,4 +1,4 @@
-from playLA.vector import Vector
+from la.vector import Vector
 
 if __name__ == "__main__":
     # vec = [5, 2]
