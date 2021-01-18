@@ -1,31 +1,35 @@
+from __future__ import annotations
+
+from typing import Iterable, Union
+
 from .Vector import Vector
 
 
 class Matrix:
 
-    def __init__(self, list2d):
+    def __init__(self, list2d: Iterable[Iterable]) -> None:
         # >>> matrix = Matrix([[1, 2], [3, 4]])
         self._values = [row[:] for row in list2d]
 
     @classmethod
-    def zero(cls, r, c):
+    def zero(cls, r: int, c: int) -> Matrix:
         """返回一个 r 行 c 列的零矩阵"""
         return cls([[0] * c for _ in range(r)])
 
     @classmethod
-    def identity(cls, n):
+    def identity(cls, n: int) -> Matrix:
         """返回一个 n 行 n 列的单位矩阵"""
         m = [[0] * n for _ in range(n)]
         for i in range(n):
             m[i][i] = 1
         return cls(m)
 
-    def __getitem__(self, pos):
+    def __getitem__(self, pos: tuple) -> float:
         """返回矩阵 pos 位置的元素"""
         r, c = pos
         return self._values[r][c]
 
-    def __add__(self, another):
+    def __add__(self, another: Matrix) -> Matrix:
         """返回两个矩阵的加法结果"""
         assert self.shape() == another.shape(), \
             "Error in adding. Shape of matrix must be same"
@@ -39,7 +43,7 @@ class Matrix:
         return Matrix(
             [[a + b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())])
 
-    def __sub__(self, another):
+    def __sub__(self, another: Matrix) -> Matrix:
         """返回两个矩阵的减法结果"""
         assert self.shape() == another.shape(), \
             "Error in subtracting. Shape of matrix must be same"
@@ -53,7 +57,7 @@ class Matrix:
         return Matrix(
             [[a - b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())])
 
-    def __mul__(self, k):
+    def __mul__(self, k: float) -> Matrix:
         """返回矩阵的数量乘结果: self * k"""
         # m = []
         # for i in range(self.row_num()):
@@ -64,58 +68,58 @@ class Matrix:
         # return Matrix(m)
         return Matrix([e * k for e in self.row_vector(i)] for i in range(self.row_num()))
 
-    def __rmul__(self, k):
+    def __rmul__(self, k: float) -> Matrix:
         """返回矩阵的数量乘结果: k * self"""
         return self * k
 
-    def __truediv__(self, k):
+    def __truediv__(self, k: float) -> Matrix:
         """返回数量除法的结果矩阵: self / k"""
         return self * (1 / k)
 
-    def __pos__(self):
+    def __pos__(self) -> Matrix:
         """返回矩阵取正的结果"""
         return self * 1
 
-    def __neg__(self):
+    def __neg__(self) -> Matrix:
         """返回矩阵取负的结果"""
         return self * -1
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "Matrix({})".format(self._values)
 
     # __str__ = __repr__
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self._values)
 
-    def shape(self):
+    def shape(self) -> tuple:
         """返回矩阵的形状: (行数, 列数)"""
         return len(self._values), len(self._values[0])
 
-    def row_num(self):
+    def row_num(self) -> int:
         """返回矩阵的行数"""
         return self.shape()[0]
 
     __len__ = row_num
 
-    def col_num(self):
+    def col_num(self) -> int:
         """返回矩阵的列数"""
         return self.shape()[1]
 
-    def size(self):
+    def size(self) -> int:
         """返回矩阵的元素个数"""
         r, c = self.shape()
         return r * c
 
-    def row_vector(self, index):
+    def row_vector(self, index: int) -> Vector:
         """返回矩阵的第 index 个行向量"""
         return Vector(self._values[index])
 
-    def col_vector(self, index):
+    def col_vector(self, index: int) -> Vector:
         """返回矩阵的第 index 个列向量"""
         return Vector([row[index] for row in self._values])
 
-    def dot(self, another):
+    def dot(self, another: Union[Vector, Matrix]) -> Union[Vector, Matrix]:
         """返回矩阵乘法的结果"""
         if isinstance(another, Vector):
             # 矩阵和向量的乘法
@@ -163,7 +167,7 @@ class Matrix:
             return Matrix([[self.row_vector(i).dot(another.col_vector(j)) for j in range(another.col_num())]
                            for i in range(self.row_num())])
 
-    def transpose(self):
+    def transpose(self) -> Matrix:
         """返回矩阵的转置矩阵"""
         # m = []
         # for i in range(self.col_num()):
