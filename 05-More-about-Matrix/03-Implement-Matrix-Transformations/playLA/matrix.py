@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Union, List
 
-from .Vector import Vector
+from .vector import Vector
 
 
 class Matrix:
@@ -15,14 +15,6 @@ class Matrix:
     def zero(cls, r: int, c: int) -> Matrix:
         """返回一个 r 行 c 列的零矩阵"""
         return cls([[0] * c for _ in range(r)])
-
-    @classmethod
-    def identity(cls, n: int) -> Matrix:
-        """返回一个 n 行 n 列的单位矩阵"""
-        m = [[0] * n for _ in range(n)]
-        for i in range(n):
-            m[i][i] = 1
-        return cls(m)
 
     def __getitem__(self, index: int) -> Vector:
         """返回矩阵 index 行的元素"""

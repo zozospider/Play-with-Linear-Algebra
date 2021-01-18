@@ -1,5 +1,5 @@
-from .Matrix import Matrix
-from .Vector import Vector
+from .matrix import Matrix
+from .vector import Vector
 from ._globals import is_equal
 from ._globals import is_zero
 

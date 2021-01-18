@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Union, List
 
-from .Vector import Vector
+from .vector import Vector
 
 
 class Matrix:

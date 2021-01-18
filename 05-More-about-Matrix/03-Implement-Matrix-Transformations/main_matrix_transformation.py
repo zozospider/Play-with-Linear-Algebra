@@ -2,7 +2,7 @@ import math
 
 import matplotlib.pyplot as plt
 
-from playLA.Matrix import Matrix
+from playLA.matrix import Matrix
 
 if __name__ == "__main__":
     plt.figure(figsize=(5, 5))

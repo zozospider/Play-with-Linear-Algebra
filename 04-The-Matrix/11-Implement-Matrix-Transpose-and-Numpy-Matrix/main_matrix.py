@@ -1,5 +1,5 @@
-from playLA.Matrix import Matrix
-from playLA.Vector import Vector
+from playLA.matrix import Matrix
+from playLA.vector import Vector
 
 if __name__ == "__main__":
     # matrix: [[1, 2], [3, 4]]

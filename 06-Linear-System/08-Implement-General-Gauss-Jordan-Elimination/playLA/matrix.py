@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from typing import List
+from typing import Union, List
 
-from .Vector import Vector
+from .vector import Vector
 
 
 class Matrix:
@@ -15,6 +15,14 @@ class Matrix:
     def zero(cls, r: int, c: int) -> Matrix:
         """返回一个 r 行 c 列的零矩阵"""
         return cls([[0] * c for _ in range(r)])
+
+    @classmethod
+    def identity(cls, n: int) -> Matrix:
+        """返回一个 n 行 n 列的单位矩阵"""
+        m = [[0] * n for _ in range(n)]
+        for i in range(n):
+            m[i][i] = 1
+        return cls(m)
 
     def __getitem__(self, index: int) -> Vector:
         """返回矩阵 index 行的元素"""
@@ -113,3 +121,62 @@ class Matrix:
     def col_vector(self, index: int) -> Vector:
         """返回矩阵的第 index 个列向量"""
         return Vector([row[index] for row in self._values])
+
+    def dot(self, another: Union[Vector, Matrix]) -> Union[Vector, Matrix]:
+        """返回矩阵乘法的结果"""
+        if isinstance(another, Vector):
+            # 矩阵和向量的乘法
+            #     M(m*k)       V(k)      V(m)
+            # [ - - r1 - - ]   [ | ]   [ r1.v ]
+            # [ - - r2 - - ]   [ | ]   [ r2.v ]
+            # [     ...    ] . [ v ] = [ ...  ]
+            # [     ...    ]   [ | ]   [ ...  ]
+            # [ - - rm - - ]   [ | ]   [ r4.v ]
+
+            #    5*3        3       5
+            # [ 1 2 0 ]           [ 4 ]
+            # [ 2 1 5 ]   [ 2 ]   [ 5 ]
+            # [ 1 1 2 ] . [ 1 ] = [ 3 ]
+            # [ 1 0 0 ]   [ 0 ]   [ 2 ]
+            # [ 4 1 2 ]           [ 9 ]
+            assert self.col_num() == len(another), \
+                "Error in Matrix-Vector Multiplication"
+            return Vector([self.row_vector(i).dot(another) for i in range(self.row_num())])
+
+        if isinstance(another, Matrix):
+            # 矩阵和矩阵的乘法
+            #     M(m*k)           M(k*n)                 M(m*n)
+            # [ - - r1 - - ]   [ |  |      | ]   [ r1.c1 r1.c2 ... r1.cn ]
+            # [ - - r2 - - ]   [ |  |      | ]   [ r2.c1 r2.c2 ... r2.cn ]
+            # [     ...    ] . [ c1 c2 ... cn] = [  ...   ...       ...  ]
+            # [     ...    ]   [ |  |      | ]   [  ...   ...       ...  ]
+            # [ - - rm - - ]   [ |  |      | ]   [ rm.c1 rm.c2 ... rm.cn ]
+
+            #    5*3        3*2       5*2
+            # [ 1 2 0 ]             [ 4 6 ]
+            # [ 2 1 5 ]   [ 2 0 ]   [ 5 8 ]
+            # [ 1 1 2 ] . [ 1 3 ] = [ 3 5 ]
+            # [ 1 0 0 ]   [ 0 1 ]   [ 2 0 ]
+            # [ 4 1 2 ]             [ 9 5 ]
+            assert self.col_num() == another.row_num(), \
+                "Error in Matrix-Matrix Multiplication"
+            # m = []
+            # for i in range(self.row_num()):
+            #     v = []
+            #     for j in range(another.col_num()):
+            #         v.append(self.row_vector(i).dot(another.col_vector(j)))
+            #     m.append(v)
+            # return Matrix(m)
+            return Matrix([[self.row_vector(i).dot(another.col_vector(j)) for j in range(another.col_num())]
+                           for i in range(self.row_num())])
+
+    def transpose(self) -> Matrix:
+        """返回矩阵的转置矩阵"""
+        # m = []
+        # for i in range(self.col_num()):
+        #     v = []
+        #     for e in self.col_vector(i):
+        #         v.append(e)
+        #     m.append(v)
+        # return Matrix(m)
+        return Matrix([[e for e in self.col_vector(i)] for i in range(self.col_num())])

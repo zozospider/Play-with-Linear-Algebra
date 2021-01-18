@@ -1,4 +1,4 @@
-from playLA.Matrix import Matrix
+from playLA.matrix import Matrix
 
 if __name__ == "__main__":
     # matrix: [[1, 2], [3, 4]]
