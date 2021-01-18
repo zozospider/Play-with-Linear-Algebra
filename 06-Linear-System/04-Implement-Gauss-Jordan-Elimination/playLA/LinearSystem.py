@@ -1,5 +1,6 @@
 from .Matrix import Matrix
 from .Vector import Vector
+from ._globals import is_equal
 from ._globals import is_zero
 
 
@@ -81,7 +82,8 @@ class LinearSystem:
                 max_row_below = self._max_row_below(r)
                 self._swap_row(r, max_row_below)
             # step b
-            self.augmented_matrix[r] = self.augmented_matrix[r] / self.augmented_matrix[r][r]
+            if not is_equal(self.augmented_matrix[r][r], 1):
+                self.augmented_matrix[r] = self.augmented_matrix[r] / self.augmented_matrix[r][r]
             # step c
             for r_below in range(r + 1, self._n):
                 multiples_of_row_i = self.augmented_matrix[r_below][r]
