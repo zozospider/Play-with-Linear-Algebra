@@ -1,20 +1,23 @@
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List
 
 from .Vector import Vector
 
 
 class Matrix:
 
-    def __init__(self, list2d: Iterable[Iterable]) -> None:
+    def __init__(self, list2d: List[List[float]]) -> None:
         # >>> matrix = Matrix([[1, 2], [3, 4]])
         self._values = [row[:] for row in list2d]
 
-    def __getitem__(self, pos: tuple) -> float:
-        """返回矩阵 pos 位置的元素"""
-        r, c = pos
-        return self._values[r][c]
+    def __getitem__(self, index: int) -> Vector:
+        """返回矩阵 index 行的元素"""
+        return Vector(self._values[index])
+
+    def __setitem__(self, index: int, vector: Vector) -> None:
+        """设置矩阵 index 行的元素为 vector"""
+        self._values[index] = list(vector)
 
     def __repr__(self) -> str:
         return "Matrix({})".format(self._values)

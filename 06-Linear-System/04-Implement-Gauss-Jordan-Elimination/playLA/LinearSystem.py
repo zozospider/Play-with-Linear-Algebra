@@ -24,7 +24,8 @@ class LinearSystem:
         # 系数矩阵的行列数
         self._n = matrix.row_num()
         # 增广矩阵
-        self.augmented_matrix = [Vector(matrix.row_vector(i).underlying_list() + [vector[i]]) for i in range(self._n)]
+        # self.augmented_matrix = [Vector(matrix.row_vector(i).underlying_list() + [vector[i]]) for i in range(self._n)]
+        self.augmented_matrix = Matrix([matrix.row_vector(i).underlying_list() + [vector[i]] for i in range(self._n)])
 
     def gauss_jordan_elimination(self) -> None:
         """执行高斯消元法"""

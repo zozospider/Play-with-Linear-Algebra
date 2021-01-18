@@ -71,14 +71,16 @@ class LinearSystem:
         self._m = matrix.row_num()
         self._n = matrix.col_num()
         # 增广矩阵
-        self.augmented_matrix = [Vector(matrix.row_vector(i).underlying_list() + [vector[i]]) for i in range(self._m)]
+        # self.augmented_matrix = [matrix.row_vector(i).underlying_list() + [vector[i]] for i in range(self._m)]
+        # self.augmented_matrix = [Vector(matrix.row_vector(i).underlying_list() + [vector[i]]) for i in range(self._m)]
+        self.augmented_matrix = Matrix([matrix.row_vector(i).underlying_list() + [vector[i]] for i in range(self._m)])
         # 记录主元位置 (augmented_matrix 中每一行的主元在第几列)
         # [ 0,
         #   2,
         #   4 ]
         self.pivots = []
 
-    def gauss_jordan_elimination(self) -> list:
+    def gauss_jordan_elimination(self) -> Matrix:
         """执行高斯消元法"""
         # 前向过程 (从上到下)
         self._forward()

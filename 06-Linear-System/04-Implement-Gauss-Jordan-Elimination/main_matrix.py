@@ -32,7 +32,8 @@ if __name__ == "__main__":
 
     print("------")
 
-    # matrix[0, 0]: 1
+    # matrix[0]: [1, 2]
+    # matrix[0, 1]: 2
     # matrix.shape(): (2, 2)
     # matrix.row_num(): 2
     # len(matrix): 2
@@ -40,7 +41,8 @@ if __name__ == "__main__":
     # matrix.size(): 4
     # matrix.row_vector(0): [1, 2]
     # matrix.col_vector(0): [1, 3]
-    print("matrix[0, 0]:", matrix[0, 0])
+    print("matrix[0]:", matrix[0])
+    print("matrix[0, 1]:", matrix[0][1])
     print("matrix.shape():", matrix.shape())
     print("matrix.row_num():", matrix.row_num())
     print("len(matrix):", len(matrix))

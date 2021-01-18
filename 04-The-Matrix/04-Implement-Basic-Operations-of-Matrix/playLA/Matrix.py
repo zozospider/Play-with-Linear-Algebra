@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List
 
 from .Vector import Vector
 
 
 class Matrix:
 
-    def __init__(self, list2d: Iterable[Iterable]) -> None:
+    def __init__(self, list2d: List[List[float]]) -> None:
         # >>> matrix = Matrix([[1, 2], [3, 4]])
         self._values = [row[:] for row in list2d]
 
@@ -16,10 +16,13 @@ class Matrix:
         """返回一个 r 行 c 列的零矩阵"""
         return cls([[0] * c for _ in range(r)])
 
-    def __getitem__(self, pos: tuple) -> float:
-        """返回矩阵 pos 位置的元素"""
-        r, c = pos
-        return self._values[r][c]
+    def __getitem__(self, index: int) -> Vector:
+        """返回矩阵 index 行的元素"""
+        return Vector(self._values[index])
+
+    def __setitem__(self, index: int, vector: Vector) -> None:
+        """设置矩阵 index 行的元素为 vector"""
+        self._values[index] = list(vector)
 
     def __add__(self, another: Matrix) -> Matrix:
         """返回两个矩阵的加法结果"""
@@ -58,7 +61,7 @@ class Matrix:
         #         v.append(e * k)
         #     m.append(v)
         # return Matrix(m)
-        return Matrix([e * k for e in self.row_vector(i)] for i in range(self.row_num()))
+        return Matrix([[e * k for e in self.row_vector(i)] for i in range(self.row_num())])
 
     def __rmul__(self, k: float) -> Matrix:
         """返回矩阵的数量乘结果: k * self"""

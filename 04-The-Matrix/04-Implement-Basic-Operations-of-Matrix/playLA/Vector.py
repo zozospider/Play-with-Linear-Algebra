@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 import math
-from typing import Iterable
+from typing import Iterable, List
 
 from ._globals import EPSILON
 
 
 class Vector:
 
-    def __init__(self, lst: Iterable) -> None:
+    def __init__(self, lst: List[float]) -> None:
         # >>> v = Vector([5, 2])
         self._values = list(lst)
 
