@@ -1,19 +1,19 @@
 from la.vector import Vector
 
 if __name__ == "__main__":
-    # vec = [5, 2]
-    # vec2 = [3, 1]
-    vec = Vector([5, 2])
-    vec2 = Vector([3, 1])
-    print("vec = {}".format(vec))
-    print("vec2 = {}".format(vec2))
+    # vector = [5, 2]
+    # vector2 = [3, 1]
+    vector = Vector([5, 2])
+    vector2 = Vector([3, 1])
+    print("vector = {}".format(vector))
+    print("vector2 = {}".format(vector2))
 
     print("------")
 
-    # len(vec) = 2
-    # vec[0] = 5, vec[1] = 2
-    print("len(vec) = {}".format(len(vec)))
-    print("vec[0] = {}, vec[1] = {}".format(vec[0], vec[1]))
+    # len(vector) = 2
+    # vector[0] = 5, vector[1] = 2
+    print("len(vector) = {}".format(len(vector)))
+    print("vector[0] = {}, vector[1] = {}".format(vector[0], vector[1]))
 
     print("------")
 
@@ -23,9 +23,9 @@ if __name__ == "__main__":
     # 3 * [5, 2] = [15, 6]
     # +[5, 2] = [5, 2]
     # -[5, 2] = [-5, -2]
-    print("{} + {} = {}".format(vec, vec2, vec + vec2))
-    print("{} - {} = {}".format(vec, vec2, vec - vec2))
-    print("{} * {} = {}".format(vec, 3, vec * 3))
-    print("{} * {} = {}".format(3, vec, 3 * vec))
-    print("+{} = {}".format(vec, +vec))
-    print("-{} = {}".format(vec, -vec))
+    print("{} + {} = {}".format(vector, vector2, vector + vector2))
+    print("{} - {} = {}".format(vector, vector2, vector - vector2))
+    print("{} * {} = {}".format(vector, 3, vector * 3))
+    print("{} * {} = {}".format(3, vector, 3 * vector))
+    print("+{} = {}".format(vector, +vector))
+    print("-{} = {}".format(vector, -vector))
