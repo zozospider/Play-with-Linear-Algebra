@@ -21,7 +21,7 @@ class Vector:
         """返回向量长度 (有多少个元素)"""
         return len(self._values)
 
-    def __getitem__(self, index: int) -> object:
+    def __getitem__(self, index: int) -> float:
         """取向量的第 index 个元素"""
         return self._values[index]
 
@@ -77,7 +77,7 @@ class Vector:
         # return "({})".format(", ".join(str(e) for e in self._values))
         return str(self._values)
 
-    def underlying_list(self) -> Iterable:
+    def underlying_list(self) -> list:
         """返回向量的底层列表"""
         return self._values[:]
 
