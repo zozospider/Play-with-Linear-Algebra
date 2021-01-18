@@ -5,15 +5,15 @@ from .Vector import Vector
 class LinearSystem:
     """限定为 n 个未知数, n 个方程, 且有唯一解的情况"""
 
-    # 线性方程            系数矩阵     增广矩阵         消元后的矩阵
-    #      4y + 8z = 2  [ 0 4 8 ]  [ 0 4 8 | 2 ]  [ 1 0 0 |  2   ]
-    # 2x + 2y +  z = 2  [ 2 2 1 ]  [ 2 2 1 | 2 ]  [ 0 1 0 | -1.5 ]
-    # 4x + 8y + 8z = 4  [ 4 8 8 ]  [ 4 8 8 | 4 ]  [ 0 0 1 |  1   ]
+    # 线性方程              系数矩阵       增广矩阵           消元后的矩阵
+    #      4y + 8z = 2    [ 0 4 8 ]    [ 0 4 8 | 2 ]    [ 1 0 0 |  2   ]
+    # 2x + 2y +  z = 2    [ 2 2 1 ]    [ 2 2 1 | 2 ]    [ 0 1 0 | -1.5 ]
+    # 4x + 8y + 8z = 4    [ 4 8 8 ]    [ 4 8 8 | 4 ]    [ 0 0 1 |  1   ]
     #
-    # matrix     vector
-    # [ 0 4 8 ]  [ 2 ]
-    # [ 2 2 1 ]  [ 2 ]
-    # [ 4 8 8 ]  [ 4 ]
+    # matrix       vector   augmented_matrix   augmented_matrix (after gauss_jordan_elimination)
+    # [ 0 4 8 ]    [ 2 ]    [ 0 4 8 2 ]        [ 1 0 0  2   ]
+    # [ 2 2 1 ]    [ 2 ]    [ 2 2 1 2 ]        [ 0 1 0 -1.5 ]
+    # [ 4 8 8 ]    [ 4 ]    [ 4 8 8 4 ]        [ 0 0 1  1   ]
     def __init__(self, matrix: Matrix, vector: Vector) -> None:
         assert matrix.row_num() == len(vector), \
             "row number of matrix must be equal to the length of vector"
