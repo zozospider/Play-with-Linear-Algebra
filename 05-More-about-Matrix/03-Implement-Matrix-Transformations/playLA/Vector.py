@@ -3,7 +3,7 @@ from __future__ import annotations
 import math
 from typing import Iterable, List
 
-from ._globals import EPSILON
+from ._globals import is_zero
 
 
 class Vector:
@@ -87,7 +87,7 @@ class Vector:
 
     def normalize(self) -> Vector:
         """返回向量的单位向量"""
-        if self.norm() < EPSILON:
+        if is_zero(self.norm()):
             raise ZeroDivisionError("Normalize error! norm is zero")
         # return Vector([e / self.norm() for e in self])
         # return 1 / self.norm() * Vector(self._values)
