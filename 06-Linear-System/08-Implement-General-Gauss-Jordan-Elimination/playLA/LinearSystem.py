@@ -1,7 +1,7 @@
 from .Matrix import Matrix
 from .Vector import Vector
-from ._globals import is_zero
 from ._globals import is_equal
+from ._globals import is_zero
 
 
 class LinearSystem:
@@ -178,10 +178,9 @@ class LinearSystem:
         """
         后向过程 (从下到上)
 
-        对从下到上 (行最简形式 matrix 倒数第一个非零行开始) 每一行执行以下操作:
+        对从下到上 (从行最简形式 matrix 倒数第一个非零行开始, 到第二行结束) 每一行执行以下操作:
             主元上面的所有行减去主元所在行的某个倍数, 使得主元 (第 r 行, 第 c 列) 上面所有元素都为 0
         """
-
         # r = 2
         # c = 4
         # row -2:

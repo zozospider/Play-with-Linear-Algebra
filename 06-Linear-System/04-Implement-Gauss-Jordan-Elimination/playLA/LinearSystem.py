@@ -1,5 +1,6 @@
 from .Matrix import Matrix
 from .Vector import Vector
+from ._globals import is_zero
 
 
 class LinearSystem:
@@ -36,10 +37,11 @@ class LinearSystem:
         前向过程 (从上到下)
 
         对从上到下每一行执行以下操作:
-            step a: 判断当前行的主元 (第 i 行, 第 i 列) 是否为 0, 如果为 0, 则将下面的具有最大值主元的行与当前行交换
-            step b: 将当前行的主元 (第 i 行, 第 i 列) 化为 1
-            step c: 主元下面的所有行减去主元所在行的某个倍数, 使得主元 (第 i 行, 第 i 列) 下面所有元素都为 0
+            step a: 判断当前行的主元 (第 r 行, 第 r 列) 是否为 0, 如果为 0, 则将下面的具有最大值主元的行与当前行交换
+            step b: 将当前行的主元 (第 r 行, 第 r 列) 化为 1
+            step c: 主元下面的所有行减去主元所在行的某个倍数, 使得主元 (第 r 行, 第 r 列) 下面所有元素都为 0
         """
+        # r = 0
         # row 1 - step a:
         # [ 0 4 8 | 2 ]    [ 4 8 8 | 4 ]
         # [ 2 2 1 | 2 ] => [ 2 2 1 | 2 ]
@@ -53,6 +55,7 @@ class LinearSystem:
         # [ 2 2 1 | 2 ] => [ 0 -2 -3 | 0 ]
         # [ 0 4 8 | 2 ]    [ 0  4  8 | 2 ]
         #
+        # r = 1
         # row 2 - step a: ignore
         # row 2 - step b:
         # [ 1  2  2 | 1 ]    [ 1 2 2   | 1 ]
@@ -63,6 +66,7 @@ class LinearSystem:
         # [ 0 1 1.5 | 0 ] => [ 0 1 1.5 | 0 ]
         # [ 0 4 8   | 2 ]    [ 0 0 2   | 2 ]
         #
+        # r = 2
         # row 3 - step a: ignore
         # row 3 - step b:
         # [ 1 2 2   | 1 ]    [ 1 2 2   | 1 ]
@@ -71,42 +75,46 @@ class LinearSystem:
         # row 3 - step c: ignore
 
         # loop rows
-        for i in range(self._n):
+        for r in range(self._n):
             # step a
-            if self.augmented_matrix[i][i] == 0:
-                max_row_below = self._max_row_below(i)
-                self._swap_row(i, max_row_below)
+            if is_zero(self.augmented_matrix[r][r]):
+                max_row_below = self._max_row_below(r)
+                self._swap_row(r, max_row_below)
             # step b
-            self.augmented_matrix[i] = self.augmented_matrix[i] / self.augmented_matrix[i][i]
+            self.augmented_matrix[r] = self.augmented_matrix[r] / self.augmented_matrix[r][r]
             # step c
-            for j in range(i + 1, self._n):
-                multiples_of_row_i = self.augmented_matrix[j][i]
-                if multiples_of_row_i != 0:
-                    self.augmented_matrix[j] = self.augmented_matrix[j] - multiples_of_row_i * self.augmented_matrix[i]
+            for r_below in range(r + 1, self._n):
+                multiples_of_row_i = self.augmented_matrix[r_below][r]
+                if not is_zero(multiples_of_row_i):
+                    self.augmented_matrix[r_below] = self.augmented_matrix[r_below] \
+                                                     - multiples_of_row_i * self.augmented_matrix[r]
 
     def _backward(self) -> None:
         """
         后向过程 (从下到上)
 
-        对从下到上每一行执行以下操作:
-            主元上面的所有行减去主元所在行的某个倍数, 使得主元 (第 i 行, 第 i 列) 上面所有元素都为 0
+        对从下到上 (从倒数第一行开始, 到第二行结束) 每一行执行以下操作:
+            主元上面的所有行减去主元所在行的某个倍数, 使得主元 (第 r 行, 第 r 列) 上面所有元素都为 0
         """
+        # r = 2
         # row -1:
         # [ 1 2 2   | 1 ]    [ 1 2 0 | -1   ]
         # [ 0 1 1.5 | 0 ] => [ 0 1 0 | -1.5 ]
         # [ 0 0 1   | 1 ]    [ 0 0 1 |  1   ]
         #
+        # r = 1
         # row -2:
         # [ 1 2 0 | -1   ]    [ 1 0 0 |  2   ]
         # [ 0 1 0 | -1.5 ] => [ 0 1 0 | -1.5 ]
         # [ 0 0 1 |  1   ]    [ 0 0 1 |  1   ]
 
         # loop rows
-        for i in range(self._n - 1, -1, -1):
-            for j in range(i - 1, -1, -1):
-                multiples_of_row_i = self.augmented_matrix[j][i]
-                if multiples_of_row_i != 0:
-                    self.augmented_matrix[j] = self.augmented_matrix[j] - multiples_of_row_i * self.augmented_matrix[i]
+        for r in range(self._n - 1, 0, -1):
+            for r_above in range(r - 1, -1, -1):
+                multiples_of_row_i = self.augmented_matrix[r_above][r]
+                if not is_zero(multiples_of_row_i):
+                    self.augmented_matrix[r_above] = self.augmented_matrix[r_above] \
+                                                     - multiples_of_row_i * self.augmented_matrix[r]
 
     def _max_row_below(self, r: int) -> int:
         """返回当前行的下面所有行中具有最大主元的行"""
